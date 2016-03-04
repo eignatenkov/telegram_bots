@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from telegram import Updater
 from datetime import datetime
+from bson.objectid import ObjectId
 import logging
 
 # Enable logging
@@ -36,10 +37,7 @@ def start(bot, update, args):
         bot.sendMessage(chat_id, text=u'Укажите корректный интервал')
         return
 
-    if chat_id in work:
-        work[chat_id] += 1
-    else:
-        work[chat_id] = 1
+    work[chat_id] = str(ObjectId())
 
     job_number = work[chat_id]
 
